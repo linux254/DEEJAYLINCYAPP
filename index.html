@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0b12">
+<meta name="description" content="Deejaylincy - Book a DJ for weddings, parties, clubs and events. Riddim Lover. Riddim Nights.">
+<title>Deejaylincy</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Deejaylincy">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{
+  --bg:#0b0b12; --card:#15151f; --card2:#1d1d2b; --line:#2a2a3d;
+  --text:#f4f4f8; --muted:#9a9ab0; --accent:#ff2e63; --accent2:#08d9d6; --ok:#2ecc71; --warn:#f5a623;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;padding-bottom:78px}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:20;background:rgba(11,11,18,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{font-weight:800;font-size:20px;letter-spacing:.5px}
+.logo span{color:var(--accent)}
+.hero{padding:44px 0 28px;text-align:center;background:radial-gradient(circle at 50% 0,#3a0f2a 0,transparent 65%)}
+.hero h1{font-size:40px;line-height:1.1;margin:0 0 10px;font-weight:900}
+.hero h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);margin:0 auto 22px;max-width:420px}
+.btn{display:inline-block;border:0;border-radius:12px;padding:14px 22px;font-size:16px;font-weight:700;cursor:pointer;color:#fff;background:var(--accent);width:auto}
+.btn.alt{background:var(--card2);border:1px solid var(--line)}
+.btn.wa{background:#25d366;color:#04230f}
+.btn.small{padding:8px 12px;font-size:13px;border-radius:9px}
+.btn.block{display:block;width:100%;text-align:center}
+section{padding:26px 0}
+h2{font-size:22px;margin:0 0 14px}
+.grid{display:grid;gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.card h3{margin:0 0 4px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--accent2);margin-bottom:6px}
+.featured{border-color:var(--accent);background:linear-gradient(160deg,#241022,var(--card))}
+label{display:block;font-size:13px;color:var(--muted);margin:12px 0 5px}
+input,select,textarea{width:100%;background:var(--card2);color:var(--text);border:1px solid var(--line);border-radius:11px;padding:13px;font-size:16px;font-family:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+textarea{min-height:90px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.msg{margin-top:12px;font-size:14px;border-radius:10px;padding:10px 12px;display:none}
+.msg.err{display:block;background:#3a1620;color:#ff8da6}
+.msg.ok{display:block;background:#12301e;color:#7ee2a2}
+.socials{display:flex;flex-wrap:wrap;gap:10px}
+.socials a{flex:1 1 40%;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-weight:600}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:26px 0 10px}
+nav.bottom{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(21,21,31,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+nav.bottom .wrap{display:flex;justify-content:space-around;padding:0}
+nav.bottom a{flex:1;text-align:center;padding:12px 4px;font-size:12px;color:var(--muted);font-weight:600}
+nav.bottom a b{display:block;font-size:20px;line-height:1.1}
+nav.bottom a.on{color:var(--accent)}
+/* dashboard */
+.view{display:none}.view.on{display:block}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}
+.stat b{display:block;font-size:24px}
+.stat small{color:var(--muted)}
+.bk{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+.bk .top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.bk h4{margin:0;font-size:16px}
+.bk .meta{color:var(--muted);font-size:13px;margin:4px 0 8px}
+.pill{font-size:11px;font-weight:800;padding:4px 9px;border-radius:99px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+.pill.new{background:#3a2d10;color:var(--warn)}
+.pill.confirmed{background:#12301e;color:var(--ok)}
+.pill.done{background:#22223a;color:#9aa4ff}
+.bk .note{font-size:14px;background:var(--card2);border-radius:9px;padding:8px 10px;margin-bottom:10px;white-space:pre-wrap;word-break:break-word}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.empty{text-align:center;color:var(--muted);padding:30px 10px}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a href="#home" class="logo" data-nav="home">DEEJAY<span>LINCY</span></a>
+  <div style="display:flex;gap:8px">
+    <button class="btn small alt" id="installBtn" style="display:none">Install app</button>
+    <a class="btn small wa" id="topWa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</div></header>
+
+<!-- ============ PUBLIC SITE ============ -->
+<div class="view on" id="v-home">
+  <div class="hero"><div class="wrap">
+    <h1>Book <span>Deejaylincy</span><br>for your next event</h1>
+    <p>Riddim, Afrobeats, Gengetone, Amapiano, Bongo and more. Weddings, clubs, birthdays, corporate and campus events.</p>
+    <a class="btn" href="#book" data-nav="book">Book now</a>
+  </div></div>
+
+  <section><div class="wrap">
+    <h2>Featured</h2>
+    <div class="grid">
+      <div class="card featured"><span class="tag">Brand</span><h3>Riddim Lover</h3><p>The signature riddim experience. Heavy bass, pure vibes, all night.</p></div>
+      <div class="card featured"><span class="tag">Event</span><h3>Riddim Nights</h3><p>Our riddim party nights. Ask about the next date and ticket info.</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <h2>Services</h2>
+    <div class="grid" id="services"></div>
+  </div></section>
+
+  <section><div class="wrap">
+    <h2>Follow @deejaylincy</h2>
+    <div class="socials" id="socials"></div>
+  </div></section>
+
+  <footer><div class="wrap">&copy; <span id="yr"></span> Deejaylincy. All rights reserved.</div></footer>
+</div>
+
+<div class="view" id="v-book">
+  <section><div class="wrap">
+    <h2>Book the DJ</h2>
+    <p style="color:var(--muted);margin-top:-6px">Fill in the details. Your request is sent straight to Deejaylincy on WhatsApp.</p>
+    <form id="bookForm" novalidate>
+      <label for="name">Your name</label>
+      <input id="name" autocomplete="name" placeholder="e.g. Jane Wanjiru">
+      <label for="phone">Phone number</label>
+      <input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. 0712 345 678">
+      <div class="row">
+        <div><label for="date">Event date</label><input id="date" type="date"></div>
+        <div><label for="time">Start time</label><input id="time" type="time"></div>
+      </div>
+      <label for="type">Event type</label>
+      <select id="type"></select>
+      <label for="venue">Venue / location</label>
+      <input id="venue" placeholder="e.g. Kisii Town, Hotel name">
+      <label for="hours">How many hours?</label>
+      <select id="hours"></select>
+      <label for="notes">Extra details (optional)</label>
+      <textarea id="notes" placeholder="Music taste, sound system needed, guest count..."></textarea>
+      <div class="msg" id="formMsg"></div>
+      <button type="submit" class="btn wa block" style="margin-top:16px">Send booking on WhatsApp</button>
+    </form>
+  </div></section>
+</div>
+
+<!-- ============ OWNER DASHBOARD ============ -->
+<div class="view" id="v-admin">
+  <section><div class="wrap">
+    <div id="lock">
+      <h2>Owner Dashboard</h2>
+      <label for="pin">Enter PIN</label>
+      <input id="pin" type="password" inputmode="numeric" placeholder="PIN" autocomplete="off">
+      <div class="msg" id="pinMsg"></div>
+      <button class="btn block" style="margin-top:14px" id="unlock">Unlock</button>
+    </div>
+    <div id="panel" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <h2 style="margin:0">Bookings</h2>
+        <button class="btn alt small" id="lockBtn">Lock</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="sNew">0</b><small>New</small></div>
+        <div class="stat"><b id="sConf">0</b><small>Confirmed</small></div>
+        <div class="stat"><b id="sAll">0</b><small>Total</small></div>
+      </div>
+      <div id="list"></div>
+      <div class="acts" style="margin-top:14px">
+        <button class="btn alt small" id="exportBtn">Export CSV</button>
+        <button class="btn alt small" id="clearBtn">Clear all</button>
+      </div>
+      <p style="color:var(--muted);font-size:12px;margin-top:14px">Bookings shown here are saved on this phone. Every request is also sent to your WhatsApp, which is your master record.</p>
+    </div>
+  </div></section>
+</div>
+
+<nav class="bottom"><div class="wrap">
+  <a href="#home" data-nav="home" class="on"><b>&#127911;</b>Home</a>
+  <a href="#book" data-nav="book"><b>&#128197;</b>Book</a>
+  <a href="#admin" data-nav="admin"><b>&#128202;</b>Dashboard</a>
+</div></nav>
+
+<script>
+/* ================== EDIT THIS SECTION ================== */
+const CONFIG = {
+  whatsapp: "254700000000",   // your WhatsApp number: country code + number, no + or spaces (e.g. 254712345678)
+  pin: "1234",                // dashboard PIN - CHANGE THIS
+  handle: "deejaylincy",
+  services: [
+    {name:"Weddings", desc:"Ceremony music, reception sets and MC support."},
+    {name:"Clubs & Nights", desc:"High-energy sets: riddim, Afrobeats, Gengetone, Amapiano."},
+    {name:"Birthdays & Parties", desc:"Custom playlists for your crowd, big or small."},
+    {name:"Corporate & Campus", desc:"Launches, graduations, college and company events."}
+  ],
+  eventTypes:["Wedding","Club / Night event","Birthday / Party","Corporate event","Campus event","Riddim Nights","Other"],
+  socials:[
+    {name:"Instagram", url:"https://instagram.com/deejaylincy"},
+    {name:"TikTok", url:"https://tiktok.com/@deejaylincy"},
+    {name:"YouTube", url:"https://youtube.com/@deejaylincy"},
+    {name:"Facebook", url:"https://facebook.com/deejaylincy"}
+  ]
+};
+/* ======================================================= */
+
+const $ = id => document.getElementById(id);
+const KEY = "deejaylincy_bookings_v1";
+const waBase = "https://wa.me/" + CONFIG.whatsapp;
+
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || []; }catch(e){ return []; } }
+function save(a){ try{ localStorage.setItem(KEY, JSON.stringify(a)); }catch(e){} }
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function el(tag, cls, text){ const e=document.createElement(tag); if(cls) e.className=cls; if(text!==undefined) e.textContent=text; return e; }
+function cleanPhone(p){ let d = String(p).replace(/\D/g,""); if(d.startsWith("0")) d = "254"+d.slice(1); return d; }
+
+/* ---------- Install as an app (PWA) ---------- */
+if("serviceWorker" in navigator){
+  window.addEventListener("load", ()=>{ navigator.serviceWorker.register("sw.js").catch(()=>{}); });
+}
+let installEvent = null;
+window.addEventListener("beforeinstallprompt", e=>{
+  e.preventDefault(); installEvent = e; $("installBtn").style.display = "inline-block";
+});
+$("installBtn").addEventListener("click", async ()=>{
+  if(!installEvent) return;
+  installEvent.prompt();
+  try{ await installEvent.userChoice; }catch(err){}
+  installEvent = null; $("installBtn").style.display = "none";
+});
+window.addEventListener("appinstalled", ()=>{ $("installBtn").style.display = "none"; });
+
+/* ---------- Static content ---------- */
+$("yr").textContent = new Date().getFullYear();
+$("topWa").href = waBase;
+CONFIG.services.forEach(s=>{ const c=el("div","card"); c.append(el("h3","",s.name), el("p","",s.desc)); $("services").append(c); });
+CONFIG.socials.forEach(s=>{ const a=el("a","",s.name); a.href=s.url; a.target="_blank"; a.rel="noopener"; $("socials").append(a); });
+CONFIG.eventTypes.forEach(t=>{ const o=el("option","",t); o.value=t; $("type").append(o); });
+for(let h=1; h<=12; h++){ const o=el("option","",h+(h===1?" hour":" hours")); o.value=h; if(h===4) o.selected=true; $("hours").append(o); }
+$("date").min = new Date().toISOString().slice(0,10);
+
+/* ---------- Navigation ---------- */
+function show(view){
+  if(!["home","book","admin"].includes(view)) view="home";
+  document.querySelectorAll(".view").forEach(v=>v.classList.toggle("on", v.id==="v-"+view));
+  document.querySelectorAll("nav.bottom a").forEach(a=>a.classList.toggle("on", a.dataset.nav===view));
+  window.scrollTo(0,0);
+  if(view==="admin") renderAdmin();
+}
+document.querySelectorAll("[data-nav]").forEach(a=>a.addEventListener("click", e=>{ e.preventDefault(); const v=a.dataset.nav; history.replaceState(null,"","#"+v); show(v); }));
+window.addEventListener("hashchange", ()=>show(location.hash.slice(1)));
+show(location.hash.slice(1) || "home");
+
+/* ---------- Booking form ---------- */
+$("bookForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  const m = $("formMsg"); m.className="msg"; m.textContent="";
+  const b = {
+    id: Date.now(),
+    created: new Date().toISOString(),
+    name: $("name").value.trim(),
+    phone: $("phone").value.trim(),
+    date: $("date").value,
+    time: $("time").value,
+    type: $("type").value,
+    venue: $("venue").value.trim(),
+    hours: $("hours").value,
+    notes: $("notes").value.trim(),
+    status: "new"
+  };
+  const missing = [];
+  if(!b.name) missing.push("your name");
+  if(cleanPhone(b.phone).length < 10) missing.push("a valid phone number");
+  if(!b.date) missing.push("the event date");
+  if(!b.venue) missing.push("the venue");
+  if(missing.length){ m.className="msg err"; m.textContent="Please add "+missing.join(", ")+"."; return; }
+
+  const all = load(); all.unshift(b); save(all);
+
+  const text =
+`*New DJ Booking Request*
+Name: ${b.name}
+Phone: ${b.phone}
+Event: ${b.type}
+Date: ${b.date}${b.time ? " at "+b.time : ""}
+Venue: ${b.venue}
+Duration: ${b.hours} hour(s)${b.notes ? "\nNotes: "+b.notes : ""}`;
+
+  m.className="msg ok"; m.textContent="Opening WhatsApp to send your request...";
+  window.open(waBase + "?text=" + encodeURIComponent(text), "_blank");
+  $("bookForm").reset(); $("hours").value = "4";
+});
+
+/* ---------- Dashboard ---------- */
+let unlocked = false;
+function setUnlocked(v){ unlocked=v; $("lock").style.display=v?"none":"block"; $("panel").style.display=v?"block":"none"; if(v) renderAdmin(); }
+$("unlock").addEventListener("click", ()=>{
+  if($("pin").value === CONFIG.pin){ $("pin").value=""; $("pinMsg").className="msg"; setUnlocked(true); }
+  else { $("pinMsg").className="msg err"; $("pinMsg").textContent="Wrong PIN."; }
+});
+$("pin").addEventListener("keydown", e=>{ if(e.key==="Enter") $("unlock").click(); });
+$("lockBtn").addEventListener("click", ()=>setUnlocked(false));
+
+function fmtDate(d, t){
+  if(!d) return "";
+  const x = new Date(d+"T00:00:00");
+  return x.toLocaleDateString(undefined,{weekday:"short",day:"numeric",month:"short",year:"numeric"}) + (t?" - "+t:"");
+}
+
+function renderAdmin(){
+  if(!unlocked) return;
+  const all = load();
+  $("sNew").textContent = all.filter(b=>b.status==="new").length;
+  $("sConf").textContent = all.filter(b=>b.status==="confirmed").length;
+  $("sAll").textContent = all.length;
+  const list = $("list"); list.textContent = "";
+  if(!all.length){ list.append(el("div","empty","No bookings on this phone yet.")); return; }
+  all.forEach(b=>{
+    const card = el("div","bk");
+    const top = el("div","top");
+    const left = el("div");
+    left.append(el("h4","",b.name), el("div","meta", b.type+" - "+fmtDate(b.date,b.time)+" - "+b.hours+"h"));
+    top.append(left, el("span","pill "+b.status, b.status));
+    card.append(top);
+    card.append(el("div","meta","Venue: "+b.venue+"  |  Phone: "+b.phone));
+    if(b.notes) card.append(el("div","note", b.notes));
+    const acts = el("div","acts");
+    const next = {new:"confirmed", confirmed:"done", done:"new"}[b.status];
+    const label = {new:"Mark confirmed", confirmed:"Mark done", done:"Reopen"}[b.status];
+    const sb = el("button","btn alt small",label);
+    sb.addEventListener("click", ()=>{ const a=load(); const i=a.findIndex(x=>x.id===b.id); if(i>-1){ a[i].status=next; save(a); renderAdmin(); } });
+    const wa = el("a","btn wa small","WhatsApp client");
+    wa.href = "https://wa.me/"+cleanPhone(b.phone)+"?text="+encodeURIComponent("Hi "+b.name+", this is Deejaylincy. Thanks for your booking request for "+b.type+" on "+b.date+".");
+    wa.target="_blank"; wa.rel="noopener";
+    const call = el("a","btn alt small","Call"); call.href="tel:"+b.phone.replace(/\s/g,"");
+    const del = el("button","btn alt small","Delete");
+    del.addEventListener("click", ()=>{ if(confirm("Delete this booking?")){ save(load().filter(x=>x.id!==b.id)); renderAdmin(); } });
+    acts.append(sb, wa, call, del);
+    card.append(acts);
+    list.append(card);
+  });
+}
+
+$("clearBtn").addEventListener("click", ()=>{ if(confirm("Delete ALL bookings on this phone?")){ save([]); renderAdmin(); } });
+$("exportBtn").addEventListener("click", ()=>{
+  const rows = [["Name","Phone","Event","Date","Time","Venue","Hours","Status","Notes"]]
+    .concat(load().map(b=>[b.name,b.phone,b.type,b.date,b.time,b.venue,b.hours,b.status,b.notes]));
+  const csv = rows.map(r=>r.map(v=>'"'+String(v||"").replace(/"/g,'""')+'"').join(",")).join("\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([csv],{type:"text/csv"}));
+  a.download = "deejaylincy-bookings.csv"; a.click();
+});
+</script>
+</body>
+</html>
